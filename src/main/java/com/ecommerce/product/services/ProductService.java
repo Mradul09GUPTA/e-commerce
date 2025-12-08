@@ -11,6 +11,6 @@ public interface ProductService {
 
     List<Product> getAllProduct();
 
-    Product replaceProduct(int id, FakeProductDto product);
+    Product replaceProduct(int id, Product product);
 
 }

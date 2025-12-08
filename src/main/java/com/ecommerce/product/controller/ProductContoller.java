@@ -57,7 +57,7 @@ public class ProductContoller {
   
 
     @PutMapping("/{id}")
-   public Product replaceProduct(@PathVariable("id") int id,@RequestBody FakeProductDto product){
+   public Product replaceProduct(@PathVariable("id") int id,@RequestBody Product product){
 
       
         return productService.replaceProduct(id,product);

@@ -73,11 +73,23 @@ public class FakeProductService implements ProductService {
         return product;
     }
 
-    @Override
-    public Product replaceProduct(int id, FakeProductDto product) {
-        // TODO Auto-generated method stub
+    private FakeProductDto convertProductToFakeProduct(Product product) {
 
-        RequestCallback requestCallback = restTemplate.httpEntityCallback(product, FakeProductDto.class);
+        FakeProductDto fakeProductDto = new FakeProductDto();
+        fakeProductDto.setId(product.getId());
+        fakeProductDto.setPrice(product.getPrice());
+        fakeProductDto.setTitle(product.getTitle());
+        fakeProductDto.setCategory(product.getCategory().getName());
+        fakeProductDto.setDescription(product.getCategory().getDescription());
+        
+        return fakeProductDto;
+    }
+
+    @Override
+    public Product replaceProduct(int id, Product product) {
+        // TODO Auto-generated method stub
+        FakeProductDto fakeProductDto= convertProductToFakeProduct(product);
+        RequestCallback requestCallback = restTemplate.httpEntityCallback(fakeProductDto, FakeProductDto.class);
         HttpMessageConverterExtractor<FakeProductDto> responseExtractor = new HttpMessageConverterExtractor(
                 FakeProductDto.class, restTemplate.getMessageConverters());
         FakeProductDto fakeStoreProductDto = restTemplate.execute(
