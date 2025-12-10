@@ -15,13 +15,13 @@ import com.ecommerce.product.exception.ProductNotFound;
 import com.ecommerce.product.model.Category;
 import com.ecommerce.product.model.Product;
 
-@Service
+@Service("FakeProductService")
 public class FakeProductService implements ProductService {
     @Autowired
     RestTemplate restTemplate;
 
     @Override
-    public Product getProductByID(int id) throws ProductNotFound {
+    public Product getProductByID(Long id) throws ProductNotFound {
         // TODO Auto-generated method stub
 
         FakeProductDto fakeProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id,
@@ -86,7 +86,7 @@ public class FakeProductService implements ProductService {
     }
 
     @Override
-    public Product replaceProduct(int id, Product product) {
+    public Product replaceProduct(Long id, Product product) {
         // TODO Auto-generated method stub
         FakeProductDto fakeProductDto= convertProductToFakeProduct(product);
         RequestCallback requestCallback = restTemplate.httpEntityCallback(fakeProductDto, FakeProductDto.class);

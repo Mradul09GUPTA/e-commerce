@@ -11,7 +11,7 @@ import com.ecommerce.product.services.ProductService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -27,11 +27,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/product")
 public class ProductContoller {
     @Autowired
+    @Qualifier("FakeProductService")
     ProductService productService;
 
 
    @GetMapping("/{id}")
-   public ResponseEntity<Product> getProductById(@PathVariable("id") int id) throws ProductNotFound {
+   public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws ProductNotFound {
 
       ResponseEntity<Product> response = new ResponseEntity<>(
         productService.getProductByID(id),
@@ -57,7 +58,7 @@ public class ProductContoller {
   
 
     @PutMapping("/{id}")
-   public Product replaceProduct(@PathVariable("id") int id,@RequestBody Product product){
+   public Product replaceProduct(@PathVariable("id") Long id,@RequestBody Product product) throws ProductNotFound{
 
       
         return productService.replaceProduct(id,product);

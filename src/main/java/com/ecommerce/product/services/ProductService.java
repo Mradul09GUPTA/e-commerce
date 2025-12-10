@@ -7,10 +7,10 @@ import com.ecommerce.product.exception.ProductNotFound;
 import com.ecommerce.product.model.Product;
 
 public interface ProductService {
-    Product getProductByID(int id) throws ProductNotFound;
+    Product getProductByID(Long id) throws ProductNotFound;
 
     List<Product> getAllProduct();
 
-    Product replaceProduct(int id, Product product);
+    Product replaceProduct(Long id, Product product) throws ProductNotFound;
 
 }
