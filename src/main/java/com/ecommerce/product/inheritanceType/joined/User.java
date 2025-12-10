@@ -1,23 +1,24 @@
-package com.ecommerce.product.model;
+package com.ecommerce.product.inheritanceType.joined;
 
-import java.util.Date;
-
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-@Setter
+
 @Getter
-@MappedSuperclass
-public class Base {
+@Setter
+@Entity(name="joinesUser")
+@Inheritance(strategy = InheritanceType.JOINED)
+
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Date createdAt;
-    Date updatedAt;
+    int id ;
+    String name ;
+    String email;
     
 }
