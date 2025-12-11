@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.product.exception.ProductNotFound;
 import com.ecommerce.product.model.Product;
+import com.ecommerce.product.projection.ProductWithTitleAndId;
 import com.ecommerce.product.repository.ProductRepository;
 @Service("DBProductService")
 public class DBProductService implements ProductService  {
@@ -29,8 +30,17 @@ public class DBProductService implements ProductService  {
         // TODO Auto-generated method stub
        
        List<Product> products = productRepository.findAll();
-
-
+       List<ProductWithTitleAndId> productWithTitleAndIds = productRepository.randomSearchMethodForProduct();
+       for(ProductWithTitleAndId productWithTitleAndId :productWithTitleAndIds){
+        System.out.println("id "+productWithTitleAndId.getId() +" and title " +productWithTitleAndId.getTitle());
+       }
+       
+       List<Object[]> rows = productRepository.debugProducts();
+     for (Object[] r : rows) {
+    System.out.println(r[0] + " | " + r[1]); // should show actual DB values
+        }
+       Product productoneid = productRepository.findonlyoneproduct((long) 1).get();
+       System.out.println(productoneid.getTitle());
        return products;
        
        
