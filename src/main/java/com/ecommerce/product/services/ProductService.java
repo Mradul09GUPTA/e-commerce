@@ -13,4 +13,6 @@ public interface ProductService {
 
     Product replaceProduct(Long id, Product product) throws ProductNotFound;
 
+    Product insertProduct(Product product);
+
 }

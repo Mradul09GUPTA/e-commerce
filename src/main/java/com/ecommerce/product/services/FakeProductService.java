@@ -103,4 +103,10 @@ public class FakeProductService implements ProductService {
 
     }
 
+    @Override
+    public Product insertProduct(Product product) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertProduct'");
+    }
+
 }

@@ -44,11 +44,22 @@ public class DBProductService implements ProductService  {
 
 
          Product replaceproduct = productRepository.findById(id).orElseThrow(()->new ProductNotFound("Product is "+ id + "not found"));
+        replaceproduct.setCategory(product.getCategory());
+        replaceproduct.setPrice(product.getPrice());
+        replaceproduct.setTitle(product.getTitle());
+         
         
         
-        
-         return null;
+         return productRepository.save(replaceproduct);
         //throw new UnsupportedOperationException("Unimplemented method 'replaceProduct'");
+    }
+
+    @Override
+    public Product insertProduct(Product product) {
+        
+
+        return  productRepository.save(product);
+        //throw new UnsupportedOperationException("Unimplemented method 'insertProduct'");
     }
     
 }
